@@ -5,6 +5,7 @@ extends CharacterBody2D
 var half_height : float
 var screen_half_height : float
 var screen_height : float
+
 func _ready():
 	half_height = collision.shape.size.y * 0.5
 	print(half_height)
@@ -23,13 +24,8 @@ func _ready():
 	#Move Paddle based on direction of INPUT
 	# use a signal to move the paddle with the direction as a paremeter
 func move_up_down(input,delta):
-	#test the movement
 	
-	var mouse_position = get_global_mouse_position()
-	var direction = (mouse_position - position).normalized()
-	var input_delta = direction.angle()
-	
-	velocity =Vector2.UP * -105 *  input_delta * delta
+	velocity =Vector2.UP * -10000 *  input * delta
 	
 #Clamp Paddle Position
 #IF#Position.y + half_height > screen-height
@@ -43,6 +39,10 @@ func _clamp_paddle(delta):
 			position.y = position.y + half_height
 	
 func _physics_process(delta):
-	move_up_down(0,delta)
 	_clamp_paddle(delta)
 	move_and_collide(velocity)
+
+
+func _on_player_move(input, delta):
+	
+	move_up_down(input,delta)

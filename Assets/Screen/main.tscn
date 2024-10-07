@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cusvwy1jymswd"]
+[gd_scene load_steps=3 format=3 uid="uid://cusvwy1jymswd"]
 
 [ext_resource type="Texture2D" uid="uid://cm43bn5kxxr4c" path="res://Assets/Screen/BlackScreen.png" id="1_is178"]
+[ext_resource type="PackedScene" uid="uid://dqoi7ha7y2hq3" path="res://Actors/Player/Player.tscn" id="2_dmgee"]
 
 [node name="Main" type="Node2D"]
 
@@ -8,3 +9,5 @@
 position = Vector2(576, 324)
 scale = Vector2(0.96, 0.72)
 texture = ExtResource("1_is178")
+
+[node name="Player" parent="." instance=ExtResource("2_dmgee")]

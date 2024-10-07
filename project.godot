@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Pung"
+run/main_scene="res://Assets/Screen/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameController="*res://game_controller.gd"
 
 [display]
 
