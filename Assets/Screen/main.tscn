@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cusvwy1jymswd"]
+
+[ext_resource type="Texture2D" uid="uid://cm43bn5kxxr4c" path="res://Assets/Screen/BlackScreen.png" id="1_is178"]
+
+[node name="Main" type="Node2D"]
+
+[node name="BlackScreen" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.96, 0.72)
+texture = ExtResource("1_is178")
