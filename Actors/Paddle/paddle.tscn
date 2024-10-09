@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ma0r5xjkrjg2"]
+[gd_scene load_steps=5 format=3 uid="uid://ma0r5xjkrjg2"]
 
 [ext_resource type="Texture2D" uid="uid://cdffockjd6g3s" path="res://Assets/Paddle1/paddle.png" id="1_4wwnt"]
 [ext_resource type="Script" path="res://Actors/Paddle/paddle.gd" id="1_7de5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdiju"]
 size = Vector2(26, 89.5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yj0s7"]
+friction = 0.0
+bounce = 1000.0
 
 [node name="Paddle" type="CharacterBody2D"]
 script = ExtResource("1_7de5t")
@@ -16,5 +20,13 @@ scale = Vector2(0.337087, 0.348135)
 texture = ExtResource("1_4wwnt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 2)
+shape = SubResource("RectangleShape2D_tdiju")
+disabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_yj0s7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(4, 2)
 shape = SubResource("RectangleShape2D_tdiju")

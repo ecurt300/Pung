@@ -6,7 +6,8 @@ var current_scene : String
 var main_scene := preload("res://Assets/Screen/main.tscn").instantiate()
 var start_screen := preload("res://Systems/start_screen.tscn").instantiate()
 #refactor later
-
+var player1_score: int
+var player2_score: int
 func _process(delta):
 	current_scene = get_tree().get_current_scene().name
 

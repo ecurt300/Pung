@@ -1,13 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://cusvwy1jymswd"]
+[gd_scene load_steps=9 format=3 uid="uid://cusvwy1jymswd"]
 
 [ext_resource type="Texture2D" uid="uid://cm43bn5kxxr4c" path="res://Assets/Screen/BlackScreen.png" id="1_is178"]
 [ext_resource type="PackedScene" uid="uid://dqoi7ha7y2hq3" path="res://Actors/Player/Player.tscn" id="2_dmgee"]
+[ext_resource type="Script" path="res://Actors/Ball/BallManager.gd" id="3_3vgtx"]
+[ext_resource type="PackedScene" uid="uid://b1a8xpfniqaor" path="res://Actors/Ball/Ball.tscn" id="4_18tfw"]
+[ext_resource type="PackedScene" uid="uid://cyitsoyt6qwvr" path="res://Actors/Bot/Bot.tscn" id="5_qp6y5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r0ggb"]
+bounce = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_np5xd"]
+size = Vector2(1149, 62)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eo7kg"]
+bounce = 2.0
 
 [node name="Main" type="Node2D"]
 
 [node name="BlackScreen" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(0.96, 0.72)
+position = Vector2(576.5, 324)
+scale = Vector2(0.960833, 0.72)
 texture = ExtResource("1_is178")
 
-[node name="Player" parent="." instance=ExtResource("2_dmgee")]
+[node name="Player1" parent="." instance=ExtResource("2_dmgee")]
+position = Vector2(20, 10)
+
+[node name="Paddle" parent="Player1" index="0"]
+position = Vector2(-6, 102)
+speed = 200.0
+
+[node name="Player2" parent="." node_paths=PackedStringArray("ball_manager") instance=ExtResource("5_qp6y5")]
+position = Vector2(1135, 2)
+ball_manager = NodePath("../BallSpawn")
+
+[node name="Paddle" parent="Player2" index="0"]
+position = Vector2(4, 112)
+speed = 3.0
+
+[node name="Bottom" type="StaticBody2D" parent="."]
+position = Vector2(573, 614)
+physics_material_override = SubResource("PhysicsMaterial_r0ggb")
+
+[node name="BottomWall" type="CollisionShape2D" parent="Bottom"]
+shape = SubResource("RectangleShape2D_np5xd")
+
+[node name="Top" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_eo7kg")
+
+[node name="TopWall" type="CollisionShape2D" parent="Top"]
+position = Vector2(578.5, 34)
+shape = SubResource("RectangleShape2D_np5xd")
+
+[node name="BallSpawn" type="Node2D" parent="." node_paths=PackedStringArray("Player1", "Player2")]
+position = Vector2(568, 338)
+script = ExtResource("3_3vgtx")
+Player1 = NodePath("../Player1")
+Player2 = NodePath("../Player2")
+ball = ExtResource("4_18tfw")
+
+[editable path="Player1"]
+[editable path="Player2"]

@@ -7,5 +7,3 @@
 script = ExtResource("1_cauwr")
 
 [node name="Paddle" parent="." instance=ExtResource("2_big1i")]
-
-[connection signal="move" from="." to="Paddle" method="_on_player_move"]
