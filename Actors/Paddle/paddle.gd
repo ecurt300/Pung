@@ -27,7 +27,7 @@ func _ready():
 func move_up_down(input,delta):
 	
 	velocity =Vector2.DOWN * speed *  input * delta
-
+	velocity = velocity.clamp(Vector2.DOWN * -speed,Vector2.DOWN * speed)
 #Clamp Paddle Position
 #IF#Position.y + half_height > screen-height
 	#Position.y = screen-height minus position.y 

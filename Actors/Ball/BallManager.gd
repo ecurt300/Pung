@@ -30,14 +30,14 @@ func despawn_ball_and_score(paddle,paddle_name):
 	
 		if behind_paddle:
 			if paddle_name == "Player1":
-				GameController.player1_score =+ 1
-			
+				GameController.player1_score += 1
+				print(GameController.player1_score)
 				game_ball.queue_free()
 				
 				
 			elif paddle_name == "Player2":
 			
-				GameController.player2_score =+ 1
+				GameController.player2_score += 1
 				
 				game_ball.queue_free()
 			spawn_ball()
